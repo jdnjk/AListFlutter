@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/OpenListTeam/OpenList/v4/alistlib/internal"
-	"github.com/OpenListTeam/OpenList/v3/cmd"
+	"github.com/OpenListTeam/OpenList/v4/cmd"
 	"github.com/OpenListTeam/OpenList/v4/cmd/flags"
 	"github.com/OpenListTeam/OpenList/v4/internal/bootstrap"
 	"github.com/OpenListTeam/OpenList/v4/internal/conf"
