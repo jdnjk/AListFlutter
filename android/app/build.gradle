@@ -29,15 +29,6 @@ android {
     compileSdkVersion 34
     ndkVersion "25.1.8937393"
 
-    signingConfigs {
-        release {
-            storeFile file(pro["KEY_PATH"])
-            storePassword pro["KEY_PASSWORD"]
-            keyAlias pro["ALIAS_NAME"]
-            keyPassword pro["ALIAS_PASSWORD"]
-        }
-    }
-
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.github.jing332.alistflutter"
