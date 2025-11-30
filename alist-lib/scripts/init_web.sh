@@ -1,9 +1,30 @@
 #!/bin/bash
 
-curl -L https://github.com/OpenListTeam/OpenList-Frontend/releases/download/rolling/openlist-frontend-dist-v4.1.1-de505e5.tar.gz -o dist.tar.gz
+set -e
+
+REPO="OpenListTeam/OpenList-Frontend"
+LATEST_API="https://api.github.com/repos/$REPO/releases/latest"
+
+ASSET_URL=$(curl -s "$LATEST_API" | \
+  grep -o '"browser_download_url": "[^"]*openlist-frontend-dist-lite-[^"]*\.tar\.gz"' | \
+  head -n1 | \
+  sed 's/.*"\(.*\)".*/\1/')
+
+if [ -z "$ASSET_URL" ]; then
+  echo "Failed to find 'openlist-frontend-dist-lite-*.tar.gz' in latest release"
+  exit 1
+fi
+
+curl -L --progress-bar "$ASSET_URL" -o dist.tar.gz
+
+# 解压
 rm -rf ./dist
-mkdir dist
+mkdir -p ./dist
 tar -zxvf dist.tar.gz -C ./dist --strip-components=1
+
+# 移动到 public 目录
 rm -rf ../public/dist
-mv -f dist ../public
-rm -rf dist.tar.gz
+mv ./dist ../public/
+
+# 清理
+rm -rf dist.tar.gz ./dist
