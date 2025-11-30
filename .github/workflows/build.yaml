@@ -9,7 +9,6 @@ on:
       - "*.sh"
       - "release.yaml"
   #      - "sync_frp.yaml"
-
   workflow_dispatch:
 
 jobs:
